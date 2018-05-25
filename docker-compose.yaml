@@ -1,0 +1,12 @@
+version: '2.0'
+services:
+
+    gamejam-sockets:
+        build:
+            context: .
+            dockerfile: Dockerfile-dev
+        container_name: gamejam-sockets
+        ports:
+            - "100:8080"
+        volumes:
+            - .:/var/www
