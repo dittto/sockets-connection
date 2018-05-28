@@ -51,7 +51,7 @@ class ConnectionLayer implements MessageComponentInterface
             if ($messageData[self::INPUT_CONNECT] === self::CONNECTION_CLIENT) {
                 $this->clients[$id] = [];
                 echo 'Connected client #' . $id . "\n";
-                $this->sendClientMessage([self::OUTPUT_SERVER_DATA => $this->serverData], $id);
+                $this->sendClientMessage([self::OUTPUT_CLIENT_ID => $id, self::OUTPUT_SERVER_DATA => $this->serverData], $id);
                 $this->sendServerMessage([self::OUTPUT_CLIENT_ID => $id, self::OUTPUT_CLIENT_DATA => []]);
             }
             elseif ($messageData[self::INPUT_CONNECT] === self::CONNECTION_SERVER) {
@@ -97,10 +97,11 @@ class ConnectionLayer implements MessageComponentInterface
             $this->serverData = [];
             $this->sendClientMessage([self::OUTPUT_SERVER_DISCONNECT => true]);
         } elseif (isset($this->connections[$this->serverId])) {
-            if (isset($this->clients[$id])) {
-                unset($this->clients[$id]);
-            }
             $this->sendServerMessage([self::OUTPUT_CLIENT_DISCONNECT => $id]);
+        }
+
+        if (isset($this->clients[$id])) {
+            unset($this->clients[$id]);
         }
 
         if (isset($this->connections[$id])) {
