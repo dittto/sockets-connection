@@ -68,7 +68,7 @@ The next block shows us connecting a server. To test this locally, have two cons
 ```js
 conn.send('{"connect": "server"}');
 conn.send('{"data": {"map_id": "1"}}');
-conn.send('{"data": {"client_id": 1, "x": 11, "y": 15}}');
+conn.send('{"data": {"clients": [{"id": 11, "x": 0.4, "y": 0.3}]}}');
 ```
 
 As above, when the `connection layer` receives the `connect` command, it defines the connection as a *server*. It then sends the server data to every connected client, and every client's data back to the server.
