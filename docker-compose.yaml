@@ -1,11 +1,11 @@
 version: '2.0'
 services:
 
-    gamejam-sockets:
+    sockets-connection:
         build:
             context: .
             dockerfile: Dockerfile-dev
-        container_name: gamejam-sockets
+        container_name: sockets-connection
         ports:
             - "100:8080"
         volumes:

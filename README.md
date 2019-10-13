@@ -10,6 +10,7 @@ This repository comes with it's own Dockerfile for both development and producti
 docker build -t sockets-connection:latest .
 docker-compose up -d --build
 docker exec -it sockets-connection bash
+composer install
 php bin/server.php
 ```
 
